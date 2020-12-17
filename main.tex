@@ -27,7 +27,10 @@
 % Shortcuts
 
 % % Local to this project
-\renewcommand\labelitemi{--} % Changes itemize bullet to dash
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\ann}{Ann}
+\newcommand{\SUB}{\mathbf{Sub}}
+\newcommand{\ass}{\text{Ass}_{\text{AM}}\,}
 
 % % Misc
 \newcommand{\brkt}[1]{\left(#1\right)}
@@ -45,7 +48,7 @@
 \newenvironment{backward}{($\limplies$)}{}
 
 % % Sets
-\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\supp}{Supp}
 \newcommand{\set}[1]{\left\{#1\right\}}
 \newcommand{\st}{\,|\,}
 \newcommand{\minus}{\setminus}
@@ -64,6 +67,7 @@
 \newcommand{\ga}{\gamma}
 \newcommand{\de}{\delta}
 \newcommand{\ep}{\varepsilon}
+\newcommand{\ph}{\varphi}
 \newcommand{\io}{\iota}
 \newcommand{\ka}{\kappa}
 \newcommand{\la}{\lambda}
@@ -136,9 +140,9 @@
 \newcommand{\AB}{\mathbf{Ab}}
 \newcommand{\RING}{\mathbf{Ring}}
 \newcommand{\CRING}{\mathbf{CRing}}
-\newcommand{\MOD}[1][R]{#1\text{-}\mathbf{Mod}}
-\newcommand{\VEC}[1][K]{#1\text{-}\mathbf{Vec}}
-\newcommand{\ALG}[1][R]{#1\text{-}\mathbf{Alg}}
+\newcommand{\MOD}{\mathbf{Mod}}
+\newcommand{\VEC}{\mathbf{Vec}}
+\newcommand{\ALG}{\mathbf{Alg}}
 \newcommand{\PSH}{\mathbf{PSh}}
 \newcommand{\SH}{\mathbf{Sh}}
 \newcommand{\ORD}{\mathbf{Ord}}
@@ -179,7 +183,7 @@
   }}
 
 % % Galois
-\newcommand{\Gal}[2]{\mathrm{Gal}_{#1}(#2)}
+\DeclareMathOperator{\gal}{Gal}
 \DeclareMathOperator{\Orb}{Orb}
 \DeclareMathOperator{\Stab}{Stab}
 \newcommand{\emb}[3]{\mathrm{Emb}_{#1}(#2, #3)}
@@ -369,12 +373,13 @@
 }
 
 \begin{document}
-\title{Notes on \dots}
-\author{Ken Lee}
-\date{Date}
-\maketitle
 
+\title{Notes on Primary Decomposition : ``Geometrically''}
+\author{Ken Lee}
+\date{December 2020}
+\maketitle
 \input{contents.tex}
+
 %\printbibliography
 
 \end{document}

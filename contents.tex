@@ -1,1 +1,311 @@
-\tableofcontents
+\begin{dfn}[Support of a Module]
+  
+  Let $M \in A\MOD$.
+  \[
+    \supp M := \set{p \in \spec A \st M_p \neq 0}
+  \]
+  In particular, for $m \in M$,
+  $\supp m := \supp Am$.
+\end{dfn}
+\begin{prop}[Basic Properties of Support]
+
+  Let $M \in A\MOD$.
+  Then \begin{itemize}
+    \item (Triviality)
+    $\supp M \neq \nothing$ if and only if $M \neq 0$.
+    \item (Closure Supports and Annihilator) 
+    $\bar{\supp M} = V(\ann M)$.
+
+    In particular, for any section $m$, $\supp m = V(\ann m)$.
+    
+    \item (SES)
+    Let $0 \to N \to M \to P \to 0$ be a short exact sequence of 
+    $A$-modules. \newline
+    Then $\supp M = \supp N \cup \supp P$.
+    \item (Support is Union of Support of Non-Zero Sections)
+    $\supp M = \bigcup_{0 \neq m} \supp m$. 
+
+    In particular if $M$ finite, then
+    this is a finite union of closed subsets and hence 
+    $\supp M = V(\ann M)$.
+    % \item (Generic Point)
+    % Suppose $\bar{\supp M} = \bar{\set{p}}$.
+    % Then for $m \in M$, $\supp m = \supp M$ if and only if $p \in \supp m$.
+  \end{itemize}
+\end{prop}
+\begin{proof}
+  \textit{(Triviality)} being zero is stalk-local. 
+
+  \textit{(Ann)}
+  For $p \in \spec A$,
+  \begin{align*}
+    p \notin \bar{\supp M}
+    &\iff \exists\, f \in A, p \in D(f) \text{ and } 
+    D(f) \cap \supp M = \nothing. \\
+    &\iff \exists\, f \in A, p \in D(f) \text{ and } M_f = 0. \\
+    &\iff \ann M \nsubseteq I(p) \iff p \notin V(\ann M)
+  \end{align*}
+  Second equivalence : 
+  $D(f) = \spec A_f$ so $D(f) \cap \supp M = \nothing$ if and only if 
+  $M_f = 0$ since being zero is stalk-local. 
+  Third equivalence : 
+  $\limplies$ is clear. 
+  Conversely, given $p \in D(f)$ and $M_f = 0$,
+  $M_f$ implies there exists $N > 0$, $f^N \in \ann M$. 
+  But $D(f) = D(f^N)$, so $f^N \in \ann M \minus I(p)$.
+
+  For a section $m \in M$,
+  $(Am)_p = 0$ if and only if $(Am)_f = 0$ for some $f$ with $p \in D(f)$,
+  hence $\supp m = \bar{\supp m}$.
+
+  \textit{(SES)}
+  Let $p \in \spec A$.
+  Taking stalks is exact so we have exactness of 
+  $0 \to N_p \to M_p \to Q_p \to 0$.
+  The result follows since $M_p = 0$ if and only if $N_p = 0 = Q_p$. 
+
+  \textit{(Union)}
+  $\bigcup_{0 \neq m} \supp m \subs \supp M$ by $(SES)$.
+  The other inclusion is clear. 
+
+  Now assume $M = \dsum{i = 1}{n} Am_i$. 
+  Then for any $p \in \spec A$,
+  $M_p = 0$ if and only if $(Am_i)_p = 0$ for all $i$. 
+
+  % \textit{(Generic point)}
+  % Note that $M \neq 0$. 
+  % If $m = 0$, we have false if and only if false,
+  % so let $m \neq 0$.
+  % It suffices to prove the converse. 
+  % If $p \in \supp m$ then 
+  % \[
+  %   \supp M \subs \bar{\supp M} = \bar{\set{p}}
+  %   \subs \supp m \subs \supp M
+  % \]
+
+\end{proof}
+
+\begin{prop}[Primary Submodules]
+  
+  Let $M \in A\MOD$, $Q \lneq M$. 
+  For $f \in A$, 
+  \begin{itemize}
+    \item TFAE : 
+    \begin{enumerate}
+      \item $f \in \bigcup_{0 \neq m} \ann m$
+      \item $f \in \bigcup_{0 \neq m} \sqrt{\ann m}$
+      \item there exists $0 \neq m \in M$, $\supp m \subs V(f)$.
+    \end{enumerate}
+    
+    \textit{$f$ is a zero-divisor in $M$}
+    := any (and thus all) of the above.
+    \item TFAE : 
+    \begin{enumerate}
+      \item $f \in \sqrt{\ann M}$. 
+      \item $V(\ann M) \subs V(f)$.
+      \item $\supp M \subs V(f)$.
+    \end{enumerate}
+    
+    \textit{$f$ is nilpotent in $M$}
+    := any (and thus all) of the above.
+  \end{itemize}
+  Hence TFAE : 
+  \begin{enumerate}
+    \item All zero-divisors of $M$ are nilpotent. 
+    \item For all $0 \neq m \in M$, $\supp m$ = $\supp M$. 
+  \end{enumerate}
+  $Q$ \textit{primary} := $M/Q$ satisfies any (and thus all)
+  of the above. 
+  
+\end{prop}
+\begin{proof}
+  \textit{(zero-divisor)} $2 \iff 3$ is ok. 
+  $1 \implies 2$ also ok. Suffices to prove $2 \implies 1$.
+  Let $0 \neq m$, $f^N m = 0$. Let $N$ be minimal.
+  Then $m \neq 0$ gives $0 < N$ and $f f^{N-1} m = 0$ with $f^{N-1} m \neq 0$,
+  so $f \in \ann (f^{N-1}m)$.
+
+  \textit{(nilpotent)}
+  $(1 \iff 2)$ by ideal-subset adjunction. 
+  $(2 \iff 3)$ by $\bar{\supp M} = V(\ann M)$.
+
+  \textit{(primary)}
+  $(1 \implies 2)$
+  Let $0 \neq m \in M$. Then
+  \[ \supp m = V(\ann m) = \bigcap_{f \in \ann m} V(f) 
+  \sups \supp M \sups \supp m\]
+  since all $f \in \ann m$ are zero-divisors. 
+
+  $(2 \implies 1)$ clear. 
+
+\end{proof}
+
+\begin{prop}[Existence of Primary Decomposition in Noetherian Setting]
+  
+  For $N \lneq M \in A\MOD$.
+  define \textit{$N$ irreducible} := 
+  for all $N_0, N_1 \leq M$, $N = N_0 \cap N_1$ implies $N = N_0$ or $N = N_1$.
+  Let $M$ be Noetherian. 
+  Then 
+  \begin{enumerate}
+    \item For all $Q \lneq M$, $Q$ irreducible implies $Q$ primary. 
+    \item For all $N \lneq M$
+    there exists finite $\nu \subs \SUB A\MOD(M)$ such that 
+    $N = \bigcap_{Q \in \nu} Q$ and all $Q \in \nu$ are irreducible,
+    and hence primary. 
+  \end{enumerate}
+
+  For $N \lneq M$, 
+  a finite set $\nu \subs \SUB A\MOD(M)$ such that 
+  $N = \bigcap_{Q \in \nu} Q$ and all $Q \in \nu$ primary is called a 
+  \textit{primary decomposition of $N$}.
+\end{prop}
+\begin{proof}
+  $(1)$
+  Let $Q \lneq M$ be irreducible.
+  Let $f \in A$ be a zero-divisor in $M/Q$, 
+  i.e. let $0 \neq m \in M/Q$ with $f m = 0$.
+  We want $N > 0$ such that $f^N M/Q = 0$.
+  Since $0 \neq m$ and $Q$ is irreducible, 
+  it suffices to give an $N > 0$ such that $Am \cap f^N M/Q = 0$.
+  Well, $M$ Noetherian implies $M/Q$ Noetherian, so the chain 
+  \[
+    \ker f \subs \ker f^2 \subs \cdots 
+  \]
+  is constant after some $N > 0$.
+  Then $Am \cap f^N M/Q \subs f^N \ker f^{N+1} = f^N \ker f^N = 0$ as desired.
+
+  $(2)$
+  Decomposition into irreducibles exists by Noetherian induction
+  on the poset of proper submodules of $M$.
+
+\end{proof}
+
+\begin{prop}[Supports of Primary Submodules have Generic Points]
+
+  Let $Q \lneq M \in A\MOD$.
+  Then 
+  \begin{enumerate}
+    \item $Q$ primary $\implies$ $\sqrt{\ann M/Q}$ prime.
+     
+    Hence, there exists a unique $p_Q \in \spec A$ such that 
+    $\supp M/Q = \bar{\set{p_Q}}$.
+    \item $\sqrt{\ann M/Q}$ maximal $\implies$ $Q$ primary.
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  $(1)$ 
+  Let $f g \in \sqrt{\ann M/Q} = \sqrt{\ann m}$ where $m$ is non-zero section.
+  WLOG $f \notin \sqrt{\ann m}$. Then there exists $N > 0$
+  where $g \in \sqrt{\ann f^N m} = \sqrt{\ann M/Q}$,
+  so $\sqrt{\ann M/Q}$ is prime. 
+
+  For ``hence'', $\supp M/Q = \supp m$ for some non-zero section $m$ of $M/Q$.
+  So $\supp M/Q = \bar{\supp M/Q} = \bar{\set{p_Q}}$ where 
+  $p_Q$ is the point corresponding to $\sqrt{\ann M/Q}$. 
+  Uniqueness of $p_Q$ follows from $\spec A$ being sober. 
+
+  $(2)$
+  Let $p \in \spec A$ with $I(p) = \sqrt{\ann M/Q}$.
+  Then 
+  \[
+    \bar{\supp M/Q} = V(\ann M/Q) = V(I(p)) = \bar{\set{p}} = \set{p}
+  \]
+  So $\supp M/Q = \set{p}$.
+  Since any non-zero section $m$ of $M/Q$ has $\nothing \neq \supp m$,
+  the result follows. 
+
+\end{proof}
+
+\begin{eg}[Primary Components not Invariant]
+
+  Let $K$ be a field.
+  Consider the ideal $I := (X^2,XY)$ in $A := K[X,Y]$.
+  $(X^2,XY) = (X) \cap (X,Y)^2$ but also $(X^2, XY) = (X) \cap (X^2, Y)$.
+  
+  Note that for $p, q\in \spec A$,
+  $(A/I(p))_q = 0$ if and only if $q \notin \bar{\set{p}}$.
+  So $\supp A/I(p) = \bar{\set{p}}$. 
+  But $(A/I(p))_p = \ka(p)$, so for all $0 \neq f \in A/I(p)$,
+  $p \in \supp f$ and hence $\supp f = \supp A/I(p)$.
+  Thus, $I(p)$ is a primary submodule of $A$.
+
+  Then the above two intersections are distinct primary decompositions 
+  of the same ideal. 
+  Furthermore, this is a counter example to 
+  converse of previous proposition part $(1)$ : 
+  $\sqrt{\ann A/I} = \sqrt{I}= \sqrt{(X)} \cap \sqrt{(X,Y)^2}
+  = (X) \cap (X,Y) = (X)$ is prime, but $I$ is not primary. 
+
+  The uniqueness in primary decomposition is hidden elsewhere.
+\end{eg}
+
+\begin{dfn}[Associated Points (according to Atiyah-MacDonald)]
+  
+  Let $M \in A\MOD$, $p \in \spec A$.
+  For any $m \in M$, 
+  the following are equivalent : 
+  \begin{itemize}
+    \item (Generic point of support of sections) $\bar{\set{p}} = \supp m$.
+    \item (Algebraic side) $I(p) = \sqrt{\ann m}$.
+  \end{itemize}
+  Then we say \textit{$p$ is AM-associated to $M$} when 
+  there exists $m \in M$ satisfying any of the above. 
+  We use $\ass M$ to denote the set of points AM-associated to $M$.
+\end{dfn}
+
+\begin{prop}[1st Uniqueness of Primary Decomposition]
+
+  Let $N \lneq M \in A\MOD$ and 
+  $N = \bigcap_{Q \in \nu} Q$ a primary decomposition of $N$.
+  For $Q \in \nu$, let $p_Q \in \spec A$ correspond to $\sqrt{\ann M/Q}$.
+
+  Call $\nu$ \textit{minimal} when 
+  \begin{itemize}
+    \item for all $Q, Q_1 \in \nu$, $Q \neq Q_1$ implies 
+    $p_Q \neq p_{Q_1}$.
+    \item for all $Q \in \nu$, 
+    $\bigcap_{Q_1 \in \nu\minus \set{Q}} Q_1 \nsubseteq Q$.
+  \end{itemize}
+  Then 
+  \begin{enumerate}
+    \item the primary decomposition $\nu$ contains a minimal one.
+    \item For $\nu$ minimal, 
+    $\set{p_Q \st Q \in \nu} = \ass M/N$.
+    Hence, the left set is independent of 
+    the minimal primary decomposition $\nu$.
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  $(1)$ it suffices to prove that 
+  for any two primary $Q_0, Q_1$ with 
+  $\supp M/Q_0 = \bar{\set{p}} = \supp M/Q_1$.
+  we have $Q_0 \cap Q_1$ primary as well, 
+  with $\supp M/Q_0 \cap Q_1 = \bar{\set{p}}$.
+  Note that we already have : 
+  \[
+    \supp M/Q_0 \cap Q_1 = \supp M/Q_0 \cup \supp M/Q_1 = \bar{\set{p}}
+  \]
+  For $m \in M/Q_0 \cap Q_1$, let $m_0$ and $m_1$ be the reduction of 
+  $m$ mod $Q_0$ and $Q_1$ respectively. 
+  Then $\ann m = \ann m_0 \cap \ann m_1$ with $m \neq 0$ gives \[
+    \supp m = \supp m_0 \cup \supp m_1
+    = \bar{\set{p}} = \supp M/Q_0 \cap Q_1
+  \]
+
+  $(2)$
+  For $0 \neq m \in M/N$, let $m_Q$ be the reduction of $m$ mod $Q$.
+  Then $\ann (m) = \bigcap_{Q \in \nu} \ann(m_Q)$ implies \[
+    \supp m = \bigcup_{Q \in \nu} \supp m_Q
+    = \bigcup_{m_Q \neq 0} \supp M/Q
+    = \bigcup_{m_Q \neq 0} \bar{\set{p_Q}}
+  \]
+  So if $\supp m = \bar{\set{p}}$,
+  then there exists $Q \in \nu$ where 
+  $\bar{\set{p}} = \bar{\set{p_Q}}$, and hence $p = p_Q$.
+  Conversely, for $Q \in \nu$,
+  minimality of $\nu$ gives $0 \neq m^Q \in M/N$ with 
+  $m^Q_Q \neq 0$ and $m^Q_{Q_1} = 0$ for $Q_1 \neq Q$.
+  So $\supp m^Q = \bar{\set{p_Q}}$.
+
+\end{proof}
