@@ -26,6 +26,25 @@
 % Shortcuts
 
 % % Local to this project
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\SP}{Sp}
+\newcommand{\AFF}{\mathbf{Aff}}
+\renewcommand\labelitemi{--}
+\newcommand{\SUB}{\mathbf{Sub}}
+\DeclareMathOperator{\ideal}{Ideal}
+\DeclareMathOperator{\open}{Open}
+\newcommand{\zar}{\mathrm{Zar}}
+\DeclareMathOperator{\cov}{Cov}
+\newcommand{\pts}{\mathrm{Pts}}
+\newcommand{\MFD}{\mathbf{Mfd}}
+\newenvironment{proof1}{
+  \begin{proof}\renewcommand\qedsymbol{$\blacksquare$}
+}{
+  \end{proof}
+} % Proofs ending with black qedsymbol 
+\newcommand{\SCH}{\mathbf{Sch}}
+\newcommand{\PROP}{\mathbf{Prop}}
+\DeclareMathOperator{\mor}{Mor}
 
 % % Misc
 \newcommand{\brkt}[1]{\left(#1\right)}
@@ -81,6 +100,7 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\G}{\mathbb{G}}
+\newcommand{\M}{\mathbb{M}}
 \newcommand{\N}{\mathbb{N}}
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -323,6 +343,16 @@
     rightline = false,
     footnoteinside = true
 ]{ex}{Exercise}
+\newmdtheoremenv[
+    linewidth = 0.7 pt,
+    leftmargin = 20pt,
+    rightmargin = 0pt,
+    linecolor = darkgrey,
+    topline = false,
+    bottomline = false,
+    rightline = false,
+    footnoteinside = true
+]{lem}{Lemma}
 
 \theoremstyle{examplestyle}
 \newmdtheoremenv[
@@ -335,6 +365,16 @@
     rightline = false,
     footnoteinside = true
 ]{eg}{Example}
+\newmdtheoremenv[
+    linewidth = 0.7 pt,
+    leftmargin = 20pt,
+    rightmargin = 0pt,
+    linecolor = darkgrey,
+    topline = false,
+    bottomline = false,
+    rightline = false,
+    footnoteinside = true
+]{ceg}{Counter Example}
 
 \theoremstyle{remarkstyle}
 \newtheorem{rmk}{Remark}

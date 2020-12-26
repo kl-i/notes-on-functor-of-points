@@ -1,0 +1,158 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+  
+\begin{dfn}[$\Z$-Functor]
+
+  Define $\M := \Z\ALG\op$.
+  The \emph{category of $\Z$-functors}
+  $\M\SET$ is define to be the category of 
+  presheaves of sets on $\M$. 
+  For $X \in \M\SET$ and $A\op \in \M$,
+  elements of $X(A\op)$ are called 
+  \emph{morphisms from $A\op$ to $X$}.
+
+  Define $\SP : \M \to \M\SET$ to be 
+  the fully faithful Yoneda embedding $A\op \mapsto \M(-,A\op)$.
+  For $A \in \Z\ALG$, $\SP A$ is called the \emph{spectrum of $A$}.
+  The \emph{category of affine schemes} is defined to be 
+  the essential image of $\SP$.
+  We will denote it with $\AFF$.
+\end{dfn}
+
+\begin{prop}[Yoneda]
+  
+  The following are true : 
+  \begin{itemize}
+    \item (``Morphisms from $A\op$ to $X$ are Morphisms from $\SP A$ to $X$'') 
+    For $X \in \M\SET$ and $A\op \in \M$,
+    \[
+      \M\SET(\SP A, X) \map{\sim}{} X(A\op)
+    \]
+    by $\al \mapsto \al_{A\op}(\id{A\op})$.
+    Furthermore, this is functorial in $A\op$ and $X$.
+    \item (Density of Representables 
+    / ``The data of $X$ is precisely how test spaces map into it'') 
+    For $X \in \M\SET$,
+    $X$ is the colimit of the diagram $\SP \darrow X \to \M\SET$,
+    i.e. morphisms out of $X$ are determined by restricting along 
+    morphisms from affine schemes to $X$.
+  \end{itemize}
+  
+\end{prop}
+\begin{proof}
+  Straightforward.
+\end{proof}
+
+\begin{prop}[Affine Line]
+  
+  Let $n \in \N$.
+  Define \emph{affine $n$-space} to be $\A^n \in \M\SET$
+  sending $A\op \mapsto A^n$.
+  Then
+  \begin{itemize}
+    \item $\A^n$ is representable by $\Z[T_1,\dots,T_n]\op$.
+    Hence $\A^n \in \AFF$.
+    \item for $n = 1$, $\A^1$ is a ring object in $\M\SET$.
+    Hence for $X \in \M\SET$,
+    $\OO(X) := \M\SET(X,\A^1) \in \Z\ALG$. 
+    This is called the \emph{ring of global functions on $X$} and gives 
+    a functor $\OO(\star) : \M\SET \to \Z\ALG\op$.
+    We call elements of $\OO(X)$ \emph{functions on $X$}.
+
+    Concretely on morphisms $\ph \in \M\SET(Y,X)$,
+    the corresponding ring morphism $\ph^\flat : \OO(X) \to \OO(Y)$
+    is given by $f \mapsto f \circ \ph$, i.e. 
+    pulling back along $\ph$.
+    
+    \item (Spec, Global Function Adjunction)
+    \[
+      \M\SET(-,\SP \star) \iso \Z\ALG(\star,\OO(-))
+    \]
+    \item (Canonical Choice of Spectrum for Affine Schemes) for $X \in \M$, 
+    $X$ is affine if and only if $\id{\OO(X)}^\bot : X \to \SP \OO(X)$ 
+    is an isomorphism of $\Z$-functors,
+    where $\id{\OO(X)}^\bot$ is the adjunct of $\id{\OO(X)}$ under the 
+    previous adjunction.
+  \end{itemize}
+\end{prop}
+\begin{proof}
+  \textit{(Spec, Global Function Adjunction)}
+  Follows from this chain of bijections functorial in $A$ and $X$ 
+  given by the density of representables :
+  \begin{align*}
+    \M\SET(X,\SP A) 
+    &\iso  \LIM_{(B,\be) \in \SP\darrow X} \M\SET(\SP B,\SP A) 
+    \iso \LIM_{(B,\be) \in \SP\darrow X} \Z\ALG(A,B) 
+    \iso \Z\ALG\brkt{A,\LIM_{(B,\be) \in \SP\darrow X} B} \\
+    &\iso \Z\ALG\brkt{A,\LIM_{(B,\be) \in \SP\darrow X} \M\SET(\SP B,\A^1)} 
+    \iso \Z\ALG(A,\M\SET(X,\A^1)) = \Z\ALG(A,\OO(X))
+  \end{align*}
+
+  \textit{(Affine Schemes)}
+  The reverse implication is clear.
+  Let $X \map{\sim}{} \SP A$ be an isomorphism in $\M\SET$.
+  The adjunction $\M\SET(X,\SP A) \iso \Z\ALG(A,\OO(X)) 
+  \iso \M\SET(\SP \OO(X),\SP A)$ gives the commutative diagram : 
+  \begin{cd}
+    X \ar[r,"\sim"] \ar[d] & \SP A \\
+    \SP \OO(X) \ar[ru,dashed]
+  \end{cd}
+  where the dashed has the composition of the other two morphisms 
+  as an inverse, and hence an isomorphism.
+  
+\end{proof}
+
+\begin{rmk}[Intuition of Affine $n$-Space]
+  
+  For a smooth manifold $X$, 
+  a smooth map $\ph : X \to \R^n$ is equivalent to the 
+  data of $n$ global smooth functions $f_1,\dots,f_n$ on $X$, 
+  i.e. \[
+    C^\infty\MFD(X,\R^n) \iso C^\infty(X)^n
+  \]
+  ``$\R^n$ is the classifying space of $n$-tuples of global smooth functions.''
+  In the functorial POV of algebraic geometry, 
+  we take this as our definition of affine $n$-space.
+
+\end{rmk}
+
+\begin{prop}[Categorical Properties of $\Z$-Functors]
+  
+  The following are true : 
+  \begin{itemize}
+    \item (Completeness and Cocompleteness)
+    $\M\SET$ has all (small) limits and colimits,
+    all computed pointwise. 
+
+    In particular, a morphism $\ph \in \M\SET(Y,X)$ is 
+    respectively a mono/epi/isomorphism if and only if 
+    for all $A \in \M\op$, $\ph_A : Y(A) \to X(A)$ is 
+    injective/surjective/bijective.
+    \item (Base Change)
+    For $K \in \CRING$,
+    define the \emph{category of $K$-functors} to be 
+    the over-category $\M\SET/\SP K$.
+    In particular, we call $\AFF/\SP K$ the 
+    \emph{category of affine $K$-schemes}.
+
+    Then we have for $\ph \in \M\SET(\SP L,\SP K)$,
+    we have the following adjunction \[
+      \brkt{\M\SET/\SP L} (-,\SP L \times_{\SP K} (\star)) \iso 
+      \brkt{\M\SET/\SP K} (-,\star)
+    \]
+    Furthermore, this restricts to an adjunction between 
+    $\AFF/\SP L$ and $\AFF/\SP K$,
+    i.e. the pullback of affine schemes is affine.
+  \end{itemize}
+\end{prop}
+\begin{proof}
+  \textit{(Base Change)}
+  The first adjunction is categorical. 
+  For the restriction to affine schemes over $K$ and $L$,
+  note that for any $K$-algebra $A$,
+  \[
+    \SP L \times_{\SP K} \SP A \text{ ``='' } \SP \brkt{L\otimes_K A}
+  \]
+\end{proof}
+
+\end{document}

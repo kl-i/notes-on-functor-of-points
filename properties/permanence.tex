@@ -1,0 +1,24 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\begin{dfn}[Permanence]
+  
+  Let $P : \mor(\SCH) \to \PROP$ be a predicate on morphisms of schemes.
+  Then we say :
+  \begin{itemize}
+    \item $P$ is \emph{stable under composition} when 
+    for all $X \to Y \to Z$ in $\SCH$,
+    $P(X \to Y)$ and $P(Y \to Z)$ implies $P(X \to Z)$.
+    \item $P$ is \emph{stable under base change} when 
+    for all pullback diagrams \begin{cd}
+      X \ar[r] & S \\
+      X \times_S Y \ar[r] \ar[u] & Y \ar[u]
+    \end{cd}
+    $P(X \to S)$ implies $P(X\times_S Y \to Y)$.
+    \item $P$ is \emph{stable under fiber product} when 
+    for all pullback diagrams as the above, 
+    $P(X \to S)$ and $P(Y \to S)$ implies $P(X\times_S Y \to S)$.
+  \end{itemize}
+\end{dfn}
+
+\end{document}

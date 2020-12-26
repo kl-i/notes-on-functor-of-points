@@ -1,0 +1,185 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\begin{dfn}[Schemes]
+  
+  Let $X \in \M\SET$.
+  Then $X$ is called a \emph{scheme} when we have : 
+  \begin{itemize}
+    \item (``Is a Space'')
+    $X \in \SH(\M\SET_\zar)$, equivalently $\SH(\M\SET_\zar)$.
+    \item (Open cover by Affine schemes) 
+    there exists $\UU \subs \open X$ such that 
+    $\UU$ covers $X$ and every $U \in \UU$ is affine. 
+  \end{itemize}
+  We use $\SCH$ to denote the full subcategory 
+  of schemes in $\M\SET$.
+\end{dfn}
+
+\begin{rmk}[Intuition of Definition of Schemes]
+  In the same way that smooth manifolds are spaces modeled on $\R^n$
+  that is locally $\R^n$,
+  schemes are spaces modeled on $\M$ that is ``locally $\M$''.
+  In particular, objects of $\M$ ought to be schemes. 
+\end{rmk}
+
+\begin{prop}[Affine Schemes are Schemes]
+  
+  Let $X \in \AFF$.
+  Then $X \in \SCH$.
+\end{prop}
+\begin{proof}
+  $X$ is an affine open cover of itself, so it suffices to check 
+  the sheaf condition. 
+  Since $\SH(\M\SET_\zar) = \SH(\AFF_\zar)$,
+  it suffices to check that for 
+  $(A,\al) \in \SP\darrow X$, $\UU$ a $\AFF_\zar$-cover of $\SP A$, 
+  we have \[
+    \M\SET(\SP A,X) \map{\sim}{} \LIM_{U,V \in \UU} \M\SET(U\cap V,X)
+  \]
+  Since $X = \SP \OO(X)$ and $\SP : \M\op \to \M\SET$ is fully faithful,
+  this is equivalent to \[
+    \Z\ALG(\OO(X),\OO(\SP A)) \map{\sim}{}
+    \Z\ALG(\OO(X),\LIM_{U,V\in \UU} \OO(U\cap V))
+  \]
+  It thus suffices to show that \[
+    A = \OO(\SP A) \map{\sim}{} \LIM_{U,V \in \UU} \OO(U \cap V)
+  \]
+  where the isomorphism is from the restriction maps 
+  $\OO(\SP A) \to \OO(U \cap V)$.
+
+  Let $(f_V \in \OO(V))_{V \in \UU}$ that agrees on pairwise intersections.
+  Suppose for a moment, 
+  for any finite subcover $\UU_0 \subs \UU$,
+  we have a unique $f_{\UU_0} \in A$ that 
+  agree with $f_V$ on $V \in \UU_0$.
+  WLOG $\UU = \set{D(f)}_{f \in I}$ for some $I \subs A$.
+  Then $\UU$ covers $\SP A$ implies 
+  $D(I)$ covers $\SP A$, which implies $AI = A$,
+  which gives a \emph{finite} subset $I_0 \subs I$ where $AI_0 = A$.
+  Hence, we do have a finite subcover $\UU_0$ and such $f_{\UU_0}$.
+  Furthermore, 
+  for any $V \in \UU$, $f_{\UU_0} = f_{\UU_0 \cup \set{V}}$ by 
+  uniqueness of $f_{\UU_0}$ on $\UU_0$ so
+  \[
+    \fall{V}{} f_{\UU_0} = \fall{V}{} f_{\UU_0 \cup \set{V}} = f_V
+  \]
+  So $f_{\UU_0}$ actually agrees with $f_V$ on all $V \in \UU$.
+  Furthermore, it is unique, again by uniqueness on $\UU_0$.
+  Thus, it suffices to do the case of \emph{$\UU$ finite}.
+
+  The naive idea is this : 
+  if each $f_V = g_V / h_V$ with $V = D(h_V)$,
+  then ``agreeing on intersections'' \emph{should} mean 
+  $g_V h_W = g_W h_V \in \OO(U) = A$.
+  We can then use a partition of unity $1 = \dsum{V \in \UU}{} \la_V h_V$
+  to patch : \[
+    f_V = \frac{g_V}{h_V}
+    = \frac{\dsum{W \in \UU}{} \la_W g_V h_W}{h_V}
+    = \frac{\dsum{W \in \UU }{} \la_W g_W h_V}{h_V}
+    = \frac{\dsum{W \in \UU}{} \la_W g_W}{1}
+  \]
+  So $f := \dsum{W \in \UU}{} \la_W g_W \in A = \OO_{\spec A}(U)$ 
+  is the guy we want. 
+  This is even unique since if we have another such $f_1$,
+  then $f/1 = f_1 / 1 \in \OO(V) \iso A_{h_V}$ implies
+  the existence of $N_V \in \N$ such that $(f - f_1) h_V^{N_V} = 0$.
+  By \emph{finiteness of $\UU$},
+  we can pick a single $N \in \N$ with 
+  $(f - f_1) h_V^N = 0$ for all $V \in \UU$.
+  Then using another partition of unity $1 = \dsum{V \in \UU}{} \mu_V h_V^N$,
+  we have \[
+    f - f_1 = \dsum{V \in \UU}{} \mu_V (f - f_1) h_V^N = 0
+  \]
+  It thus suffices to write for all $V \in \UU$,
+  $f_V = g_V / h_V$ such that for all $W \in \UU$, $g_V h_W = g_W h_V$.
+
+  Well, for each $V \in \UU$, let $h_V \in A$ with $V = D(h_V)$.
+  Then $f_V = g_V / h_V^{n_V}$.
+  Since $D(h_V) = D(h_V^{n_V})$, WLOG $f_V = g_V / h_V$ with $V = D(h_V)$
+  Now, since $f_V$ and $f_W$ agree on $V \cap W = D(h_V h_W)$,
+  we have $g_V h_W / h_V h_W = \fall{V\cap W}{} g_V / h_V
+  = \fall{V \cap W}{} g_W / h_W = g_W h_V / h_V h_W$
+  and so the existence of $n(V,W) \in \N$ such that
+  \[
+    (g_V h_W - g_W h_V) (h_V h_W)^{n(V,W)} = 0
+  \]
+  Smashing it again with \emph{finiteness of $\UU$},
+  we can choose a single $N \in \N$ such that 
+  \[
+    (g_V h_W - g_W h_V) (h_V h_W)^N = 0
+  \]
+  for \emph{all} $V, W \in \UU$.
+  Then, since $g_V / h_V = g_V h_V^{N} / h_V^{N+1} $
+  and $D(h_V) = D(h_V^{N+1})$,
+  we can WLOG $f_V = g_V / h_V$ with $V = D(h_V)$ and \[
+    g_V h_W - g_W h_V = 0
+  \]
+  as desired, finishing the proof.
+
+
+\end{proof}
+
+\begin{prop}[Opens Subschemes]
+  
+  Let $X \in \SCH$, $U \in \open X$.
+  Then $U \in \SCH$.
+  We call $U$ an \emph{open subscheme of $X$}.
+\end{prop}
+\begin{proof}
+  
+  \textit{(Sheaf)}
+  \begin{lem}[Opens of Sheaves are Sheaves]
+  
+    Let $U \in \open X$ where $X \in \SH(\M\SET_\zar)$.
+    Then $U \in \SH(\M\SET_\zar)$.
+  \end{lem}
+  \begin{proof1}
+    % Let $Y \in \M\SET$,$\YY \in \cov_\zar(Y)$ and 
+    % $(\ph_i) \in \prod_{Y_i \in \YY} \M\SET(Y_i,U)$
+    % a collection of morphisms on $\YY$ agreeing on pairwise intersections.
+    % Then $(\ph_i)$ is certainly a compatible collection of morphisms on $\YY$
+    % to $X$,
+    % so there exists a unique $\ph \in \M\SET(Y,X)$ recovering 
+    % $\ph_i$ when restricted to each $Y_i \in \YY$.
+    % It remains to show $\ph : Y \to X$ factors through $U \subs X$,
+    % i.e. the pullback $\ph\inv U = Y$.
+    % We have for all $Y_i \in \YY$, $Y_i \subs \ph\inv U$.
+    % Since $\YY$ is a cover, $\ph\inv U$ covers $Y$.
+    % But $\ph\inv U \in \open Y$ by base change so 
+    % by extensionality of opens, $\ph\inv U = Y$ as desired.
+    Given $Y \in \M\SET$,
+    a compatible system $(\ph_i)_{Y_i \in \YY}$ of morphisms from 
+    an open cover $\YY$ of $Y$ to $U$ glues uniquely to 
+    a morphism $\ph : Y \to X$.
+    Factoring $\ph$ through $U$ is equivalent to $\ph\inv U = Y$,
+    which is true from $\ph\inv U$ ``containing'' the cover $\YY$,
+    and so is single open covering $Y$, and hence is equal to $Y$
+    by extensionality of opens. 
+  \end{proof1}
+
+  \textit{(Affine Open Cover)}
+  Let $\UU \subs \open X$, $\UU$ consists of affine opens and covers $X$.
+  Since opens and covers are preserved under base change, 
+  $\set{U \cap V}_{V \in \UU}$ is an open cover of $U$.
+  For each $V \in \UU$, $U \cap V$ is also an open of $V$.
+  By affineness of $V$, 
+  $U \cap V$ has a cover by basic opens $V_f$ of $V$.
+  % \begin{cd}
+  %   & U \ar[r] & X \\
+  %   V_f \ar[r] & U \cap V \ar[r] \ar[u] & V \ar[u]
+  % \end{cd}
+  The $V_f$ are open in $U \cap V$ by base change and 
+  hence open in $U$ by composition. 
+  This gives an affine open cover of $U \cap V$,
+  and hence an affine open cover of $U$ by 
+  taking the composite of these covers.
+
+\end{proof}
+
+\begin{prop}[Fiber Product of Schemes]
+  
+  Let $X,Y,S \in \SCH$ and $\ph \in \SCH(X,S)$, $\psi \in \SCH(Y,S)$.
+  Then the fiber product $X\times_S Y$ in $\M\SET$ is a scheme
+  and is the fiber product of $X,Y$ over $S$ in $\SCH$.
+\end{prop}
+\end{document}

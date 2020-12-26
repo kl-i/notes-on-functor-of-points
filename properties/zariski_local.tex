@@ -1,0 +1,101 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\begin{dfn}[Zariski-Local Properties]
+  
+  Let $P : \SCH \to \PROP$ be a predicate on schemes.
+  Then $P$ is called \emph{Zariski-local} when 
+  for all $X \in \SCH$ and Zariski covers $\XX$ of $X$,
+  $P(X)$ is true if and only if 
+  for all $X_i \in \XX$, $P(X_i)$ is true. 
+\end{dfn}
+
+\begin{dfn}[Affine-Local Properties]
+  
+  Let $P : \AFF \to \PROP$ be a predicate on affine schemes. 
+  Then $P$ is called \emph{affine-local} when 
+  for all $X \in \AFF$ and basic Zariski covers $\XX$ of $X$,
+  $P(X)$ is true if and only if 
+  for all $X_i \in \UU$, $P(X_i)$ is true.
+\end{dfn}
+
+\begin{prop}[Affine-Locality]
+  
+  Let $P : \AFF \to \PROP$ be affine-local.
+  Define the predicate $\text{locally }P : \SCH \to \PROP$ by
+  setting $X$ is locally $P$ when 
+  there exists an affine Zariski-cover $\XX$ of $X$ such that 
+  all $X_i \in \XX$ satisfy $P$.
+
+  Then TFAE : 
+  \begin{enumerate}
+    \item $X$ is locally $P$
+    \item All opens $U$ of $X$ are locally $P$.
+    \item All affine opens $U$ of $X$ satisfy $P$.
+    \item There exists a Zariski cover $\XX$ of $X$ where
+    all $X_i \in \XX$ are locally $P$.
+  \end{enumerate}
+  In particular, ``locally $P$'' is a Zariski-local property of schemes.
+\end{prop}
+\begin{proof}~
+  
+  $(1\implies 2)$
+  Let $U \in \open X$.
+  Let $\XX$ be an affine Zariski cover of $X$ where 
+  all $X_i \in \XX$ satisfy $P$.
+  For each $X_i$, $X_i \cap U$ is an open of $X_i$ and hence 
+  admits a Zariski covering $\UU_i$ by basic opens of $X_i$.
+  Since $P(X_i)$ is true, for every $U_{i,j} \in \UU_i$,
+  $P(U_{i,j})$ is true as well. 
+  Then note that $U_{i,j}$ are affine since $X_i$ is and also open in $U$
+  so the composite $\UU := \bigcup_{X_i \in \XX} \UU_i$ gives an 
+  Zariski cover of $U$ consisting of affines satisfying $P$.
+
+  $(2 \implies 3)$
+  Let $U \in \open X$ be affine.
+  We have an affine Zariski cover $\UU$ of $U$
+  consisting of opens satisfying $P$.
+  Since $P$ is affine-local, 
+  it suffices to find a Zariski cover of each $U_i \in \UU$ by 
+  opens that are basic in \emph{both} $U$ and $U_i$.
+  Well, we can certainly find a Zarisk cover $\UU_i$ of $U_i$ 
+  by basic opens of $U$.
+  Then $\UU_i \cup \set{U}$ is a basic Zariski cover of $U$, 
+  so its pullback is a basic Zariski cover of $U_i$.
+  But its pullback is just $\UU_i$ so $\UU_i$ works.
+
+  $(3 \implies 4)$ By $X$ being a scheme. 
+  $(4 \implies 1)$ Composites of open covers.
+
+\end{proof}
+
+\begin{prop}[Examples of Affine-Local Properties]
+  
+  The following predicates on $\AFF$ are affine-local : 
+  \begin{enumerate}
+    \item For $X \in \AFF$, say $X$ is \emph{Noetherian} when 
+    $\OO(X)$ is Noetherian.
+    \item For $X \in \AFF$, say $X$ is \emph{reduced} when 
+    $\OO(X)$ has no nilpotent elements.
+  \end{enumerate}
+\end{prop}
+
+\begin{dfn}[Globally]
+  
+  Let $P$ be a affine-local property of affine schemes and 
+  $X \in \SCH$.
+  We say $X$ is \emph{globally $P$}\footnote{
+    This is non-standard terminology.
+    A lot of affine-local properties are extended to schemes by 
+    quasi-compact + locally $P$.
+    In this case, it is standard terminology to say simply say
+    ``$X$ is $P$''.
+    However, this clashes with properties of schemes
+    \emph{not} coming from affine-local properties.
+    The addition of the adverb ``globally'' is an attempt to 
+    highlight the fact that the property $P$ is affine-local.
+  } when 
+  $X$ is locally $P$ and $X$ is quasi-compact.
+\end{dfn}
+
+\end{document}

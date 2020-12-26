@@ -1,0 +1,66 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+
+\begin{dfn}[Zariski-Local on Target, on Source]
+  Let $P : \mor(\SCH) \to \PROP$ be a predicate on morphisms of schemes.
+  Then we say :
+  \begin{itemize}
+    \item $P$ is \emph{Zariski-local on target} when 
+    for all $\ph \in \SCH(X,Y)$ and Zariski covers $\YY$ of $Y$,\newline
+    $P(\ph : X \to Y)$ is true if and only if 
+    for all $Y_i \in \YY$, $P(\ph\inv Y_i \to Y_i)$ is true. 
+    \item $P$ is \emph{Zariski-local on source} when 
+    for all $\ph \in \SCH(X,Y)$ and Zariski covers $\XX$ of $X$,\newline
+    $P(\ph : X \to Y)$ is true if and only if 
+    for all $X_i \in \XX$, $P(X_i \to X \to Y)$ is true.
+  \end{itemize}
+\end{dfn}
+
+\begin{dfn}[Affine-Local Properties of Morphisms]
+  
+  Let $P : \mor(\AFF) \to \PROP$ be a predicate on morphisms of affine schemes.
+  Then we say : 
+  \begin{itemize}
+    \item $P$ is \emph{affine-local on target} when 
+    for all $\ph \in \AFF(X,Y)$ and basic Zariski covers $\YY$ of $Y$,\newline
+    $P(\ph : X \to Y)$ is true if and only if 
+    for all $Y_i \in \YY$, $P(\ph\inv Y_i \to Y_i)$ is true. 
+    \item $P$ is \emph{affine-local on source} when 
+    for all $\ph \in \AFF(X,Y)$ and basic Zariski covers $\XX$ of $X$,\newline
+    $P(\ph : X \to Y)$ is true if and only if 
+    for all $X_i \in \XX$, $P(X_i \to X \to Y)$ is true.
+    \item $P$ is \emph{affine-local} when 
+    the following three things are true : 
+    \begin{itemize}
+      \item (Half of Affine-Local on Target)
+      For $\ph \in \AFF(X,Y)$ and $f \in \OO(Y)$,
+      $P(\ph : X \to Y)$ implies $P(\ph\inv Y_f \to Y_f)$.
+      \item (Half of Affine-Local on Source)
+      For $\ph \in \AFF(X,Y)$ and basic Zariski cover $\XX$ of $X$,
+      if $P(X_i \to X \to Y)$ for every $X_i \in \XX$, then 
+      $P(X \to Y)$.
+      \item (``Zig-Zag'')
+      For $\ph \in \AFF(X,Y)$, $f \in \OO(X)$ and $g \in \OO(Y)$,
+      \begin{cd}
+        X_f \ar[r] \ar[rrd, crossing over]& X \ar[d] & \\
+        & Y_g \ar[r] & Y
+      \end{cd}
+      $P(X \to Y_g)$ implies $P(X_f \to Y)$.
+    \end{itemize}
+  \end{itemize}
+\end{dfn}
+\begin{rmk}[Frustration with Affine-Local Properties]
+  
+  It is true for properties of morphisms of affine schemes $P$ that 
+  $P$ affine-local implies $P$ affine-local on target and source. 
+  I was hoping for this to be an equivalence, however 
+  the ``zig-zag'' seems to contain the extra information that 
+  $P(\SP B \to (\SP A)_f)$ implies $P(\SP B \to \SP A)$.
+\end{rmk}
+
+\begin{prop}[Affine-Locality for Morphisms]
+  
+
+\end{prop}
+
+\end{document}
