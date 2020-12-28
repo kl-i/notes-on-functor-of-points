@@ -1,0 +1,168 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\begin{ceg}[Surjective on Points implies Surjective]
+  Consider $\SP \F_2 \to \SP \F_2[dT]$ where $dT^2 := 0$.
+  $\brkt{\SP \F_2}^\pts \iso \brkt{\SP \F_2[dT]}^\pts$ but 
+  $(\SP \F_2[dT])(\F_2[dT])$ bijects with $\F_2$ whilst 
+  $(\SP \F_2)(\F_2[dT])$ is singleton. 
+\end{ceg}
+
+\begin{eg}[Local Rings]
+  
+\end{eg}
+  
+\begin{eg}[Affine Line with Two Origins]
+  
+  Define $X$ by the following pushout diagram in $\SH(\AFF_\zar)$.
+  \begin{cd}
+    \G^\times \ar[r] \ar[d] & \A^1 \ar[d,"\io_b"] \\
+    \A^1 \ar[r,"\io_a"] & X
+  \end{cd}
+  In other words, $X$ is obtained by 
+  ``gluing two affine lines along $\G^\times$''.
+  We prove that the two morphisms $\A^1 \to X$ form an 
+  open cover of $X$ and hence $X$ is a scheme.
+
+  \textit{($\io_a, \io_b : \A^1 \to X$ monomorphism in $\SH(\AFF_\zar)$)}
+  First note that since $\M\SET$ and $\SH(\AFF_\zar)$ are both have 
+  fiber products and sheafification is the free functor adjoint to 
+  the forgetful functor, 
+  monomorphisms in $\SH(\AFF_\zar)$ are the same as 
+  monomorphisms in $\M\SET$.
+  We shall make no distinct between the two from now on. 
+
+  Let $X^{psh}$ denote the pushout of
+  $\A^1 \leftarrow \G^\times \rightarrow \A^1$ in $\M\SET$
+  so that $X$ is the sheafification of $X^{psh}$ with respect to 
+  the Zariski topology on $\AFF$.
+  Specifically, we have 
+  \[
+    X^{psh}(A) = A \sqcup_{A^\times} A 
+    = \set{(i,f) \st i \in \set{a,b}, f \in A} / 
+    (i,f) \sim (j,g) := f = g \in A^\times
+  \]
+  We will use $(a,-),(b,-)$ to denote the two obvious 
+  ``inclusions'' $\A^1 \to X^{psh}$.
+  A remark : 
+  by considering $A = \F_2^2$, 
+  one can show that $X^{psh}$ is \emph{not} a Zariski sheaf,
+  which is why we must take the pushout in $\SH(\AFF_\zar)$. 
+
+  The morphism $\io_a$ is the composition $\A^1 \to X^{psh} \to X$
+  where the second morphism comes from sheafification and 
+  the first morphism is $(a,-)$, which is clearly mono. 
+  It thus suffices that $X^{psh} \to X$ is mono. 
+  Sheafification has the property that 
+  if $X^{psh}$ is a separated presheaf, then this map is mono.
+  So it suffices that $X^{psh}$ is a separated presheaf,
+  which means for all $\al, \al_1 \in \M\SET(\SP A, X^{psh})$ and 
+  basic Zariski covers $\UU$ of $\SP A$, 
+  $\al$ and $\al_1$ agreeing on every open in $\UU$ implies 
+  $\al = \al_1$.
+
+  Let the morphisms $\al, \al$ correspond to 
+  $(i,f),(i_1,f_1) \in X^{psh}(A)$.
+  If $i = i_1$, then $f,f_1$ are just morphisms $\SP A \to \A^1$
+  that agree on the basic Zariski cover $\UU$.
+  Since $\A^1 \in \SH(\AFF_\zar)$, we obtain $f = f_1$ and 
+  hence $\al = \al_1$.
+  Now let $i \neq i_1$, WLOG $i = a$ and $i_1 = b$.
+  It follows that $f, f_1$ are morphisms from $\SP A \to \G^\times$ 
+  that agree on $\UU$.
+  Since $\G^\times \in \SH(\AFF_\zar)$ as well, $f = f_1 \in A^\times$ and so 
+  $\al = \al_1$.
+
+  \textit{(The images of $\io_a,\io_b : \A^1 \to X$ are open in $X$)}
+  Let $U_a$ be the presheaf theoretic image of $\io_a : \A^1 \to X$.
+  We show $U_a$ is an open of $X$. The argument for $\io_b$ is analogous.
+
+  We need to show that 
+  for all $(A,\al) \in \SP\darrow X$, $\al\inv U := \SP A \times_X U$ 
+  is open in $\SP A$.
+  Let $(A,\al) \in \SP\darrow X$. 
+  It is another property of sheafification that 
+  there now exists a basic Zariski cover $\VV$ of $\SP A$
+  together with morphisms $\al_i : V_i \to X^{psh}$ for every $V_i \in \VV$
+  that are the ``restriction of $\al$'',
+  in the sense that the following diagram commutes : 
+  \begin{cd}
+    \SP A \ar[r,"\al"] & X \\
+    V_i \ar[u] \ar[r,"\al_i"] & X^{psh} \ar[u]
+  \end{cd}
+  It \emph{should} suffice to prove that for all $V_i \in \VV$,
+  $V_i \cap \al\inv U_a \in \open \SP A$, 
+  since $\VV$ is an open cover of $\SP A$ and 
+  ``a subset is open if and only if it is open when restricted to an open 
+  cover''.
+  We prove this lemma. 
+  \begin{lem}
+    Let $V \in \M\SET$, $\VV$ a Zariski cover of $V$,
+    $U \in \SUB\M\SET(V)$ such that $U \in \SH(\M\SET_\zar)$
+    and for all $V_i \in \VV$, $V_i \cap U \in \open V$.
+    Then $U \in \open V$.
+
+    \begin{proof1}
+      By definition of subfunctors being open,
+      it suffices to do the case of $V \in \AFF$. 
+      For $V_i \in \VV$, let $V_i \cap U = D(I_i)$ where $I_i \subs \OO(V)$.
+      The claim is that $U = D(\bigcup_{V_i \in \VV} I_i)$.
+      Well, for $A \in \M\op$ and $\al \in V(A)$,
+      $\al \in U(A)$ if and only if $\al : \SP A \to V$ factors through $U$.
+      Since $\set{D(I_i)}_{V_i \in \VV} \subs \open V$,
+      $\set{\al\inv D(I_i)}_{V_i \in \VV} \subs \open \SP A$.
+      Then $\al : \SP A \to V$ factoring through $U$ implies 
+      $\set{\al\inv D(I_i)}_{V_i \in \VV}$ forms 
+      a Zariski cover of $\SP A$.
+      Conversely, if $\set{\al\inv D(I_i)}_{V_i \in \VV}$ forms 
+      a Zariski cover of $\SP A$, 
+      then $U\in\SH(\M\SET_\zar)$ implies $\al : \SP A \to V$ factors through 
+      $U$ by uniquely gluing $\al\inv\brkt{V_i \cap U} \to U$ together.
+      Now $\set{\al\inv D(I_i)}_{V_i \in \VV} = \set{D(\al I_i)}_{V_i \in \VV}$
+      forms a Zariski cover of $\SP A$ if and only if 
+      $A = A \bigcup_{V_i \in \VV} \al I_i$,
+      i.e. $\al \in D(\bigcup_{V_i} I_i)$.
+    \end{proof1}
+  \end{lem}
+  Now, since $\A^1 \iso U_a$ in $\M\SET$,
+  the fact that the three $\SP A, X, \A^1$ are Zariski sheaves implies 
+  we indeed have $\al\inv U_a$ as a subfunctor of $\SP A$ with 
+  $\al\inv U_a \in \SH(\M\SET_\zar)$. 
+  So it does suffice that for all $V_i \in \VV$, 
+  $V_i \cap \al\inv U_a$ is open in $\SP A$.
+  Note that again, pullbacks in $\SH(\M\SET_\zar)$ and $\M\SET$ coincide,
+  so we make no distinction between the two.
+
+  Let $V_i \in \VV$.
+  The intersection $V_i \cap \al\inv U_a$ is equal to 
+  the pullback $\al_i\inv \brkt{\lift{X^{psh}}{X}}\inv U_a$.
+  We have $\brkt{\lift{X^{psh}}{X}}\inv U_a$ as the presheaf-theoretic image 
+  of $(a,-)$, which we will denote with $(a,\A^1)$.
+  Suppose $\al_i$ corresponds to $(a,f) \in X^{psh}(\OO(V_i))$.
+  Then we that following pullback diagram,
+  \begin{cd}
+    V_i \ar[r,"\al_i"] & X^{psh} \\
+    V_i \ar[u,"\id{V_i}"] \ar[r,"f"] & \A^1 \ar[u,"\brkt{a,-}"{swap}]
+  \end{cd}
+  i.e. $\al_i\inv (a,\A^1) = V_i$, which is open. 
+  In the other case that $\al_i$ corresponds to $(b,f) \in X^{psh}(\OO(V_i))$,
+  it is easily checked from the definition of $X^{psh}$ that 
+  $\al_i\inv (a,\A^1) = (\SP A)_f$, which is again open. 
+
+  \textit{($U_a, U_b$ cover $X$)}
+  Let $x : \SP K \to X$ be a point of $X$.
+  Again, it is a property of sheafification that 
+  we obtain a basic Zariski cover $\KK$ of $\SP K$ with 
+  morphisms $\ka_i : K_i \to X^{psh}$ for each $K_i \in \KK$ such that 
+  \begin{cd}
+    \SP K \ar[r,"x"] & X \\
+    K_i \ar[u] \ar[r,"\ka_i"] & X^{psh} \ar[u]
+  \end{cd}
+  But $\SP K$ is local, so $K_i = \SP K$ for some $K_i \in \KK$.
+  In other words, we reduced the problem to showing 
+  $(a,\A^1),(b,\A^1)$ cover $X^{psh}$.
+  This is clear. 
+\end{eg}
+
+\end{document}

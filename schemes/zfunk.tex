@@ -19,11 +19,49 @@
   We will denote it with $\AFF$.
 \end{dfn}
 
+\begin{rmk}[Intuition of $\Z$-Functors and Spectrums]
+  In differential geometry, 
+  given a morphism of smooth manifolds $\ph : X \to Y$,
+  one obtains a ring morphism $\ph^\flat : C^\infty(Y) \to C^\infty(X)$
+  that is the pullback of global smooth functions.
+  For algebraic geometry, here's how to think about it : 
+  \begin{itemize}
+    \item $\M$ is the category of ``test spaces''.
+    For smooth manifolds, this is open subsets of $\R^n$.
+    \item A ring $A$ is the ``ring of global functions on $A\op$''.
+    \item A ring morphism $\ph : A \to B$ is the ``pullback of global functions 
+    along $\ph\op : B\op \to A\op$''.
+    \item An $\Z$-functor $X \in \M\SET$ is something
+    our ``test spaces'' in $\M$ can ``map into''.
+    Essentially,
+    \[
+      \text{``$X(A\op) = \mor(A\op ,X)$''}
+    \]
+    Then given $\ph\op : B\op \to A\op$,
+    one should be able to turn ``maps'' $\al : A\op \to X$ into 
+    $\al \circ \ph\op : B\op \to X$.
+    This is precisely $X(A\op) \to X(B\op)$ and 
+    functoriality simply expresses how pre-composition respects 
+    the identity morphisms and composition.
+    \item The spectrum functor $\SP$ realizes 
+    a ``space'' $A\op$ in $\M$ as something 
+    our ``test spaces'' in $\M$ can map to.
+    Then the intuition of ``$X(A\op) = \mor(A\op ,X)$''
+    is realised as $X(A\op) \iso \M\SET(\SP A,X)$.
+    This is Yoneda's lemma.
+    \item $\AFF$ formalizes what we mean by ``test spaces in $\M$''.
+    \item $\M\SET$ is complete and cocomplete as a category (since $\SET$ is),
+    i.e. it's the perfect playground for building more general ``spaces''
+    out of affine schemes.
+  \end{itemize}
+\end{rmk}
+
 \begin{prop}[Yoneda]
   
   The following are true : 
   \begin{itemize}
-    \item (``Morphisms from $A\op$ to $X$ are Morphisms from $\SP A$ to $X$'') 
+    \item (``Morphisms from $A\op$ to $X$ $\longleftrightarrow$ 
+    Morphisms from $\SP A$ to $X$'') 
     For $X \in \M\SET$ and $A\op \in \M$,
     \[
       \M\SET(\SP A, X) \map{\sim}{} X(A\op)
@@ -33,9 +71,7 @@
     \item (Density of Representables 
     / ``The data of $X$ is precisely how test spaces map into it'') 
     For $X \in \M\SET$,
-    $X$ is the colimit of the diagram $\SP \darrow X \to \M\SET$,
-    i.e. morphisms out of $X$ are determined by restricting along 
-    morphisms from affine schemes to $X$.
+    $X$ is the colimit of the diagram $\SP \darrow X \to \M\SET$.
   \end{itemize}
   
 \end{prop}

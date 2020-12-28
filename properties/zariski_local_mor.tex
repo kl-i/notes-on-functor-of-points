@@ -60,7 +60,28 @@
 
 \begin{prop}[Affine-Locality for Morphisms]
   
-
+  Let $P : \mor(\AFF) \to \PROP$ be an affine local property 
+  of morphisms of affine schemes.
+  For $\ph \in \SCH(X,Y)$,
+  we say $\ph$ is \emph{locally $P$} when 
+  there exists a Zariski cover $\XX$ of $X$ such that 
+  for each $X_i \in \XX$, 
+  there exists an affine open $Y_i$ of $Y$ with 
+  $X_i \subs \ph\inv Y_i$ and $P(X_i \to Y_i)$ true. 
+  Then for any $\ph \in \SCH(X,Y)$, TFAE : 
+  \begin{enumerate}
+    \item $\ph$ is locally $P$.
+    \item For all opens $U, V$ of $X,Y$ respectively with $U \subs \ph\inv V$,
+    $U \to V$ is locally $P$.
+    \item For all affine opens $U, V$ of $X,Y$ respectively with 
+    $U \subs \ph\inv V$, $P(U \to V)$.
+    \item There exists an affine Zariski cover $\YY$ of $Y$ and 
+    for each $Y_i \in \YY$ an affine Zariski cover $\XX_i$ of $\ph\inv Y_i$ 
+    such that for all $X_{ij} \in \XX_i$, $P(X_{ij} \to Y_i)$.
+    \item There exists a Zariski cover $\YY$ of $Y$ and 
+    for each $Y_i \in \YY$ a Zariski cover $\XX_i$ of $\ph\inv Y_i$ 
+    such that for all $X_{ij} \in \XX_i$, $X_{ij} \to Y_i$ is locally $P$.
+  \end{enumerate}
 \end{prop}
 
 \end{document}
