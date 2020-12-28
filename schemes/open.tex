@@ -4,172 +4,148 @@
 \begin{rmk}
   A scheme will be a 
   ``space modelled on $\M$ with an open cover by affine schemes''.
-  This section defines the notion of ``open subfunctors'' 
-  of a $\Z$-functor and an ``open cover''.
-  Since $\Z$-functors are meant to be 
-  modelled on $\M$,
-  we first define everything for affine schemes.
+  Since every ``space'' in $\M\SET$ is modelled on $\M$,
+  we first define the notion of open covers for affine schemes,
+  then define it for general $X \in \M\SET$.
 
-  Somehow, no one could eradicate the 
-  special role of fields as ``points''. 
-  Perhaps it should be local rings instead.
-  Something about points of the topos $\SH(\AFF_\zar)$
-  corresponding to local rings\dots
+  We define closed subfunctors of affine schemes first, 
+  then define open ones as ``complements'' of closed.
 \end{rmk}
 
-\begin{dfn}[Points and Covers]\footnote{
-  $\pts$ and ``surjective on points'' is non-standard definition.
-  }
-  % Let $X \in \M\SET$.
-  % A \emph{point of $X$} is a morphism 
-  % $x : \SP K \to X$ where $K$ is a field. 
-  % For $x$ a point of $X$ and $\ph \in \M\SET(X,Y)$,
-  % we write $\ph(x) := \ph \circ x$.
-  Define the \emph{category of test points}, $\pts$, 
-  to be the full subcategory of $\M$ consisting of $K\op$ where $K$ is a field.
-  For $X \in \M\SET$, 
-  a \emph{point of $X$} is defined to be 
-  a morphism $x \in \M\SET(\SP K,X)$ where $K\op \in \pts$.
-  For $\ph \in \M\SET(X,Y)$,
-  we will use $\ph(x)$ to denote $\ph \circ x$.
-  For $f \in \OO(X)$, 
-  we will use $\ev_x$ to denote the pullback $x^\flat : \OO(X) \to \OO(K)$.
+\begin{dfn}[Closed Subfunctors of Affine Schemes]
 
-  % Let $\UU \subs \SUB\M\SET(X)$.
-  % Then TFAE : 
-  % \begin{enumerate}
-  %   \item For all points $x : \SP K \to X$ of $X$,
-  %   there exists $U \in \UU$ with a factoring 
-  %   \begin{cd}
-  %     \SP K \ar[r,"x"] \ar[rd] & X \\
-  %     & U \ar[u]
-  %   \end{cd}
-  %   \item For all fields $K$, 
-  %   $X(K) = \bigcup_{U \in \UU} U(K)$.
-  % \end{enumerate}
-  % We say $\UU$ \emph{covers} $X$ when it satisfies any 
-  % (and thus all) of the above. 
-  For $\ph \in \M\SET(Y,X)$,
-  we will use $Y^\pts,X^\pts$ to denote the restriction of $Y,X$ to $\pts\op$
-  and $\ph^\pts : Y^\pts \to X^\pts$ the restricted morphism.
-  Then we say $\ph$ is \emph{surjective on points} when 
-  $\ph^\pts$ is an epimorphism (equivalently, component-wise surjective).
-  
-  For a subset $\UU \subs \M\SET\darrow X$ for any $X \in \M\SET$,
-  we say $\UU$ \emph{covers} $X$ when 
-  $\coprod \UU \to X$ is surjective on points.
-  Equivalently, for all points $x : \SP K \to X$ of $X$, 
-  there exists $U \in \UU$ with a factoring 
-  \begin{cd}
-    U \ar[r] & X \\
-    & \SP K \ar[u,"x"{swap}] \ar[ul]
-  \end{cd}
-\end{dfn}
-
-
-\begin{prop}[Base Change of Cover]
-  
-  Let $\UU$ be a cover of $X \in \M\SET$.
-  Then for all $\ph \in \M\SET(Y,X)$,
-  the set $\ph\inv\UU$ of pullbacks of morphisms in $\UU$ 
-  forms a cover of $Y$.
-\end{prop}
-\begin{proof}
-  % Pullbacks of mono are mono so 
-  % $\ph\inv\UU \subs \SUB\M\SET(Y)$.
-  % Then ``preimage of union is union''.
-  % Then for any point $x : \SP K \to Y$ of $Y$,
-  % $\ph(x) : \SP K \to X$ is an point of $X$ and hence 
-  % there exists $U \in \UU$ that $\ph(x)$ factors through. 
-  % It follows from the UP of fiber products that 
-  % $x : \SP K \to Y$ factors through $\ph\inv U$.
-  Follows from fiber product in $\M\SET$ being computed component-wise.
-\end{proof}
-
-\begin{prop}[Multiplicative Group Scheme]
-  
-  Consider the functor $\G^\times \in \M\SET$ defined by 
-  $A \in \M\op \mapsto A^\times$.
-  Then 
-  \begin{itemize}
-    \item $\G^\times$ is representable by 
-    the ring $\Z[T,T\inv]$ and hence affine.
-    \item $\G^\times$ is a group object in $\M\SET$.
-    In fact, for any $X \in \M\SET$,
-    $\M\SET(X,\G^\times) = \OO(X)^\times$. 
-  \end{itemize}
-\end{prop}
-\begin{proof}
-  UP of $\Z[T,T\inv]$ implies it represents $\G^\times$.
-  The second property can be straightforwardly deduced either from 
-  the $\spec$-global functions adjunction or elementarily.
-\end{proof}
-
-\begin{prop}[Basic Opens of a $\Z$-Functor]
-  
-  Let $X \in \M\SET$ and $f \in \OO(X)$.
-  The \emph{support of $f$}, $X_f$, is defined as 
-  the subfunctor of $X$ sending 
-  $A \in \M\op$ to the set of $\al \in \M\SET(\SP A, X)$ such that 
-  $\ph^\flat(f) \in A^\times$.
-
-  Then $X_f$ is the pullback of $\G^\times$ along $f : X \to \A^1$.
-  \begin{cd}
-    X_f \ar[r] \ar[d] & X \ar[d] \\
-    \G^\times \ar[r] & \A^1
-  \end{cd}
-
-  Subfunctors of $X$ of the form $X_f$ are called \emph{basic opens}.
-\end{prop}
-\begin{proof}
-  Easy.
-\end{proof}
-
-\begin{rmk}[Intuition of Multiplicative Group Scheme and Basic Opens]
-  
-  For a smooth manifold $X$,
-  \[
-    C^\infty\MFD(X,\R^\times) \iso C^\infty(X)^\times
-  \]
-  ``$\R^\times$ is classifying space for invertible global functions on $X$.''
-  One can thus think of $\G^\times$ as ``$\A^1\minus\set{0}$''.
-  A basic open $X_f$ is then just the preimage of ``$\A^1\minus\set{0}$''
-  under $f : X \to \A^1$.
-\end{rmk}
-
-\begin{prop}[Opens of Affine Schemes]
-  
   Let $X \in \AFF$.
   For $I \in \ideal \OO(X)$, 
-  define $D(I) \in \SUB\M\SET(X)$ by 
+  define the \emph{vanishing of $I$}, $V(I) \in \SUB\M\SET(X)$, by 
   \[
     A \in \M\op \mapsto \set{\ph \in \AFF(\SP A, X) \st 
-    A\ph^\flat I = A}
+    I \subs \ker \ph^\flat}
   \] 
   In particular, for $I = (f)$,
-  we have $D(I) = X_f$.
-  Sometimes, we use $D(f)$ to denote $X_f$.
-
-  Then 
-  \begin{itemize}
-    \item (Basic Opens are Affine) 
-    for $f \in \OO(X)$, $D(f)$ is representable by $\OO(X)[f\inv]$.
-    \item (Ideals to Opens)
-    For $I, J \in \ideal \OO(X)$,
-    $I \subs J$ implies $D(I) \subs D(J)$.
-
-    This defines $D : \ideal \OO(X) \to \SUB\M\SET(X)$.
-    The category $\open X$ of \emph{opens of $X$} is defined as the 
-    essential image of $D$.
-    We call $U \in \open X$ an \emph{open of $X$}.
+  we write $V(f)$ instead of $V((f))$.
+  A subfunctor $Z$ of $X$ is called \emph{closed} when 
+  there exists $I \in \ideal \OO(X)$ such that $Z = V(I)$.
+\end{dfn}
+\begin{prop}[Basic Facts about Closed Subfunctors]
   
-    \item (Intuitive Definition of Opens) for $I \in \ideal \OO(X)$,
-    $\set{D(f)}_{f \in I}$ covers $D(I)$.
-    \item (Partition of Unity)
-    For $I \in \ideal \OO(X)$,
-    $D(I)$ covers $X$ if and only if 
-    there exists finite $I_0 \subs I$ such that $AI_0 = A$.
-    Such $I_0 \subs A$ are called \emph{partitions of unity}.
+  Let $X \in \AFF$.
+  Then the following are true : 
+  \begin{itemize}
+    \item (Closed Subfunctors are Affine) 
+    For $I \in \ideal\OO(X)$,
+    $V(I)$ is representable by $\OO(X)/I$ and
+    $I = \ker \brkt{\OO(X) \to \OO(V(I))}$.
+    Hence for any closed subfunctor $Z$ of $X$,
+    $Z$ is an affine scheme and 
+    $Z = V(I(Z))$ where $I(Z) := \ker \brkt{\OO(X) \to \OO(Z)}$
+    is called the \emph{ideal of definition of $Z$}.
+
+    \item (Ideals, Vanishing Adjunction)
+    For $I, J \in \ideal \OO(X)$,
+    $I \subs J$ if and only if $V(J) \subs V(I)$.
+
+    \item (Arbitrary Intersection of Closed)
+    Let $\XX$ be a collection of closed subfunctors of $X$.
+    Then $\bigcap_{Z \in \XX} Z = V(\dsum{Z \in \XX}{} I(Z))$.
+    
+    \item (Base Change / ``Preimage of Closed are Closed'')
+    Let $\ph \in \AFF(Y,X)$, $I \in \ideal \OO(X)$.
+    Let the following be a pullback diagram : 
+    \begin{cd}
+      Y \ar[r,"\ph"] & X \\
+      \ph\inv V(I) \ar[u] \ar[r] & V(I) \ar[u]
+    \end{cd}
+    Then $\ph\inv V(I) = V(\OO(Y)\ph^\flat I)$.
+    % \item (Fiber Product)
+    % Let $X,X_1 \in \AFF/Y$ where $Y \in \AFF$.
+    % Let $I,I_1$ be ideals of $\OO(X)$, $\OO(X_1)$ respectively. 
+    % Then we have the pullback diagram : 
+    % \begin{cd}
+    %   V(I) \ar[r] & Y \\
+    %   V(I \otimes_{\OO(Y)} \OO(X_1) + \OO(X) \otimes_{\OO(Y)} I_1) 
+    %   \ar[u] \ar[r] & V(I_1) \ar[u]
+    % \end{cd} 
+    % \item (Composition of Closed Immersions)
+    % For a morphism $\ph \in \AFF(Y,X)$,
+    % call $\ph$ a \emph{closed immersion}
+    % when 
+  \end{itemize}
+\end{prop}
+
+\begin{prop}[Open Subfunctors of Affine Schemes]
+  
+  Let $X \in \AFF$. Then the following are true : 
+  \begin{itemize}
+    \item (Open Subfunctors) For $I \in \ideal\OO(X)$,
+    the following two subfunctors of $X$ are equal : 
+    \begin{itemize}
+      \item (``Complement of $V(I)$'')
+      Define $X\minus V(I)$ by setting 
+      $\brkt{X\minus V(I)}(A)$ to be 
+      the set of $\al \in \AFF(\SP A, X)$ such that
+      $\al\inv V(I) = \SP 0$, the ``empty affine scheme''.
+      \item (``Support of $I$'')
+      Define $D(I)$ by setting 
+      $D(I)(A)$ to be the set of $\al \in \AFF(\SP A, X)$ such that 
+      $A = A\al^\flat I$.
+    \end{itemize}
+    A subfunctor $U$ of $X$ is called \emph{open} when 
+    there exists $I \in\ideal\OO(X)$ such that $U = D(I) = X\minus V(I)$.
+
+    We will use $\open X$ to denote the full subcategory of $\SUB\M\SET(X)$
+    consisting of open subfunctors of $X$.
+    % \item (Multiplicative Group Scheme and Basic Opens)
+    % Consider the functor $\G^\times \in \M\SET$ defined by 
+    % $A \in \M\op \mapsto A^\times$.
+    % Then \begin{itemize}
+    %   \item $\G^\times = D(\id{\A^1}) = \A^1\minus V(\id{\A^1})$ 
+    %   as subfunctors of $\A^1$.
+    %   \item $\G^\times$ is representable by $\Z[T,T\inv]\op$ and hence affine.
+    %   \item For any $f \in \OO(X)$,
+    %   define 
+    % \end{itemize}
+    \item (Ideal, Open Adjunction)
+    Let $I, J \in \ideal\OO(X)$.
+    Then $D(I) \subs D(J)$ if and only if $\sqrt{I} \subs \sqrt{J}$.
+    In particular, for $U \in \open X$,
+    there exists a unique $I_U \in \ideal\OO(X)$ such that 
+    $\sqrt{I_U} = I_U$ and $U = D(I_U)$.
+
+    \item (``Fields given enough points for Opens'')
+    For any $Y \in \M\SET$, 
+    define $Y^\pts$ to the restriction of $Y$ to 
+    the full subcategory $\pts$ of $\M\op$ consisting of 
+    $K\op$ where $K$ is a field. 
+    We will call $Y^\pts$ the \emph{points of $Y$}.
+
+    Then for $U, V$ opens of $X$,
+    $U = V$ if and only if $U^\pts = V^\pts$.
+    \item 
+    For $\UU \subs \open X$,
+    define the \emph{open union of $\UU$} to be \[
+      \obigcup_{U \in \UU} U := X\minus \bigcap_{U \in \UU} V(I_U)
+      = D\brkt{\dsum{U \in \UU}{} I_U}
+    \]
+    Then for $\UU \subs \open X$, 
+    \begin{itemize}
+      \item (Choice)
+      for any $\set{J_U}_{U \in \UU} \subs \ideal\OO(X)$ where 
+      each $U = D(J_U)$, 
+      we have $\obigcup_{U \in \UU} U = D(\dsum{U \in \UU}{} J_U)$.
+      \item (``Open Cover'') TFAE : 
+      \begin{enumerate}
+        \item (Intuitive) $\obigcup_{U \in \UU} U = X$.
+        \item (Partition of Unity) $\OO(X) = \dsum{U \in \UU}{} J_U$
+        where $\set{J_U}_{U \in \UU}$ is any collection of ideals of $\OO(X)$
+        such that $U = D(J_U)$ for each $U$.
+        \item (Surjective on Points) 
+        For all $x : \SP K \to X$ where $K$ is a field, 
+        there exists $U \in \UU$ such that $x$ factors through $U$.
+      \end{enumerate}
+      We say $\UU$ \emph{covers} $X$ when 
+      any (and thus all) of the above are true. 
+    \end{itemize}
+
     \item (Base Change / ``Preimage of Opens are Open'')
     Let $\ph \in \AFF(Y,X)$, $I \in \ideal \OO(X)$.
     Let the following be a pullback diagram : 
@@ -178,6 +154,9 @@
       \ph\inv D(I) \ar[u] \ar[r] & D(I) \ar[u]
     \end{cd}
     Then $\ph\inv D(I) = D(\ph^\flat I)$.
+    Hence the pullback of opens along morphisms of affine schemes 
+    remain open.
+
     \item (Fiber Product)
     Let $X,X_1 \in \AFF/Y$ where $Y \in \AFF$.
     Let $I,I_1$ be ideals of $\OO(X)$, $\OO(X_1)$ respectively. 
@@ -188,61 +167,54 @@
     \end{cd} 
     In particular, $X = X_1 = Y$ implies 
     the intersection of two opens of $X$ is an open of $X$.
-    The special case of $D(I) = D(f)$ and $D(I_1) = D(f_1)$ yields 
-    $D(f) \cap D(f_1) = D(f f_1)$.
   \end{itemize}
-
-  
 \end{prop}
 \begin{proof}~
 
-  \textit{(Basic Opens are Affine)}
-  UP of $\OO(X)[f\inv]$ as an $\OO(X)$ algebra. 
+  \textit{(Open Subfunctors)}
+  $A \otimes_{\OO(X)} \OO(X)/I = A/A\al^\flat I$.
 
-  \textit{(Intuitive Def of Opens)}
-  Let $x : \SP K \to X$ be a point of $X$.
-  Then $Kx^\flat I = K$ if and only if there exists $f \in I$ with 
-  $f(x) \in K^\times$.
+  \textit{(Ideal, Open Adjunction)}
+  The reverse is straightforward. 
+  For forward implication, it suffices that $I \subs \sqrt{J}$.
+  Suppose we have $f \in I \minus \sqrt{J}$,
+  in particular $\OO(X) \neq 0$.
+  Consider $\io : \SP (\OO(X)/J)_f \to X$.
+  Then $\io \in D(I) \minus D(J)$ since 
+  $(\OO(X)/J)_f$ a non-zero ring by assumption.
+  This is a contradiction. 
 
-  \textit{(Partition of Unity)}
-  Having finite $I_0 \subs I$ with $AI_0 = A$ is equivalent to 
-  $AI = A$.
-  Clearly, $AI = A$ implies $D(I)$ covers $\SP A$.
-  Conversely, suppose $AI \ssubs A$.
-  $D(I)$ not covering $\SP A$ is the same as 
-  it ``missing a point of $\SP A$'',
-  that is to say we are looking for a point $x : \SP K \to \SP A$ of $\SP A$
-  that doesn't admit a lift across $D(I) \to \SP A$.
-  This is the same as $I \subs \ker\ev_x$.
-  Well, $AI \ssubs A$ implies by Zorn's lemma the existence of 
-  a map $\ev_x : A \to K$ where $K$ is a field with the desired property.
+  \textit{(Fields give enough points for opens)}
+  Forwards is clear. Let $U = D(I), V = D(J)$.
+  For reverse, suppose $D(I) \neq D(J)$.
+  WLOG let $\al \in D(I)(A) \minus D(J)(A)$.
+  We're looking for a ``point'' 
+  $\SP K \to D(I)$ that doesn't lift to $D(J)$.
+  Well, since $A\al^\flat J \ssubs A$, by Zorn's lemma 
+  there exists a map $\ev_x : A \to K$ where $K$ is a field and 
+  $J \subs \ker\ev_x$.
+  Then $\al \circ x \in D(I)(K) \minus D(J)(K)$ as desired.
+
+  \textit{(Choice)}
+  Straightforward by checking on points. 
+  \textit{(Open Cover, Base Change, Fiber product)}
+  Straightforward.
+
 \end{proof}
 
-\begin{ceg}[$\bigcup_{f \in I} D(f) = D(I)$]
-
-  Consider the ring $\F_2 \times \F_2$ and elements $(1,0),(0,1)$.
-  The ideal $I$ generated by these is the whole ring. 
-  But 
-  $D((1,0))(\F_2\times\F_2) \cup D((0,1))(\F_2\times\F_2) 
-  \ssubs D(I)(\F_2\times\F_2)$ since 
-  the ring endomorphism $(a,b) \mapsto (b,a)$ doesn't map 
-  any of $(1,0),(0,1)$ to units. 
-  Thus $D((1,0)) \cup D((0,1)) \ssubs D(I)$.
-\end{ceg}
-
-\begin{dfn}[Open Subfunctor]
+\begin{dfn}[Open Subfunctors, Open Covers]
   
   Let $X \in \M\SET$.
   For $U \in \SUB\M\SET(X)$,
   $U$ is called \emph{open} when 
-  for all $\ph : \SP A \to X$, the pullback $\ph\inv U$ of $U$ along $\ph$
+  for all $\al : \SP A \to X$, the pullback $\al\inv U$ of $U$ along $\al$
   is an open of $\SP A$.
   \begin{cd}
-    \SP A \ar[r,"\ph"] & X \\
-    \ph\inv U \ar[u] \ar[r] & U \ar[u]
+    \SP A \ar[r,"\al"] & X \\
+    \al\inv U \ar[u] \ar[r] & U \ar[u]
   \end{cd}
   We will use $\open X$ to denote the 
-  full subcategory of opens of $X$ in $\SUB\M\SET(X)$.
+  full subcategory of $\SUB\M\SET(X)$ consisting of opens.
   When $X$ is affine, 
   this agrees with our specialized notion for affine schemes.
 \end{dfn}
@@ -271,10 +243,28 @@
     In particular, for $X = X_1 = S$,
     this proves the intersection of two opens of $X$ is 
     again an open of $X$.
+    \item (``Open Cover'')
+    Let $\UU \subs \open X$. TFAE : 
+    \begin{itemize}
+      \item (``Looks like Open Cover when Tested'') 
+      For all $(A,\al) \in \SP\darrow X$,
+      $\obigcup_{U \in \UU} \al\inv U = \SP A$. 
+      \item (``Surjective on Points'')
+      For all $x : \SP K \to X$ where $K$ is a field, 
+      there exists $U \in \UU$ such that $x$ factors through $U$.
+    \end{itemize}
+    We say $\UU$ \emph{covers} $X$ when 
+    any (and thus all) of the above are true. 
+    \item (Base Change of Open Cover)
+    Let $\ph \in \M\SET(Y,X)$ and $\UU \subs \open X$ cover $X$.
+    Then $\ph\inv U := \set{\ph\inv U}_{U \in \UU}$ covers $Y$.
   \end{itemize}
 \end{prop}
 \begin{proof}
-  (Extensionality) Reduce to affine global case and use partition of unity.
+  (Extensionality) $U = V$ if and only if 
+  for all $\al : \SP A \to X$, 
+  $\al\inv U = \SP A$ if and only if $\al\inv V = \SP A$. 
+  This reduces to the affine global case.
 \end{proof}
 
 \end{document}
